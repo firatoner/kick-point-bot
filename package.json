@@ -1,0 +1,19 @@
+{
+  "name": "kick-point-bot",
+  "version": "1.0.0",
+  "description": "Kick streamer emoji bot for earning loyalty points",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": ["kick", "bot", "emoji", "loyalty", "points"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "ws": "^8.14.2",
+    "pusher-js": "^8.4.0-rc2"
+  }
+}
