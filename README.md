@@ -1,189 +1,146 @@
 # 🎮 Kick Point Bot
 
-Kick yayıncılarını otomatik olarak takip edip belirli aralıklarla emoji göndererek sadakat puanı toplayan web tabanlı bot sistemi.
+Kick yayıncılarını otomatik olarak izleyen ve belirli aralıklarla emoji göndererek sadakat puanı kazanan bot sistemi.
 
 ## ✨ Özellikler
 
-- 🌐 **Web Dashboard**: Modern ve kullanıcı dostu arayüz
-- 🤖 **Otomatik Emoji Gönderimi**: Belirlediğiniz aralıklarla otomatik emoji gönderir
-- 📊 **Canlı İstatistikler**: Gönderilen emoji sayısı ve hata takibi
-- 👥 **Çoklu Yayıncı Desteği**: Birden fazla yayıncıyı aynı anda takip edin
-- 📝 **Canlı Log Görüntüleme**: Tüm bot aktivitelerini gerçek zamanlı izleyin
-- ⚙️ **Kolay Konfigürasyon**: .env dosyası ile basit ayarlama
+- 🎯 Birden fazla yayıncıyı aynı anda izleme
+- 💬 Otomatik emoji gönderimi
+- ⏱️ Özelleştirilebilir zaman aralıkları
+- 📊 Web dashboard ile gerçek zamanlı takip
+- 🔄 Canlı yayıncı ekleme/çıkarma
+- 📈 İstatistik ve analiz
 
 ## 🚀 Kurulum
 
-### Gereksinimler
-
-- Node.js 18+
-- npm veya yarn
-- Kick hesabı
-
-### Adım 1: Projeyi İndirin
-
-```bash
-git clone <repository-url>
-cd kick-point-bot
-```
-
-### Adım 2: Bağımlılıkları Yükleyin
+### 1. Bağımlılıkları Yükle
 
 ```bash
 npm install
 ```
 
-### Adım 3: Yapılandırma
+### 2. Ortam Değişkenlerini Ayarla
 
-`.env.example` dosyasını `.env` olarak kopyalayın:
+`.env.example` dosyasını `.env` olarak kopyalayın ve bilgilerinizi girin:
 
 ```bash
 cp .env.example .env
 ```
 
-`.env` dosyasını düzenleyin ve bilgilerinizi girin:
+`.env` dosyasını düzenleyin:
 
 ```env
-# Kick Hesap Bilgileri
-KICK_USERNAME=kullanici_adiniz
-KICK_PASSWORD=sifreniz
-
-# Takip Edilecek Yayıncılar (virgülle ayırın)
-STREAMERS=yayinci1,yayinci2,yayinci3
-
-# Gönderilecek Emojiler (virgülle ayırın)
+KICK_USERNAME=your_username
+KICK_PASSWORD=your_password
+STREAMERS=streamer1,streamer2,streamer3
 EMOJIS=❤️,😂,👍,🔥,💯
-
-# Gönderim Aralıkları (milisaniye cinsinden)
-MIN_INTERVAL=60000    # Minimum 1 dakika
-MAX_INTERVAL=300000   # Maximum 5 dakika
-
-# Bağlantı Ayarları
-RECONNECT_DELAY=5000
-MAX_RETRIES=5
+MIN_INTERVAL=60000
+MAX_INTERVAL=300000
 ```
 
-### Adım 4: Botu Başlatın
+### 3. Uygulamayı Başlat
 
-**Geliştirme Modu:**
+**Development Mode:**
 ```bash
 npm run dev
 ```
 
-**Production Modu:**
+**Production Mode:**
 ```bash
 npm run build
 npm start
 ```
 
-Bot varsayılan olarak http://localhost:3000 adresinde çalışacaktır.
+Dashboard'a tarayıcınızdan `http://localhost:3000` adresinden erişebilirsiniz.
 
 ## 📖 Kullanım
 
-1. Tarayıcınızda http://localhost:3000 adresine gidin
-2. **"Başlat"** butonuna tıklayarak botu çalıştırın
-3. Yeni yayıncı eklemek için "Yayıncı Ekle" bölümünü kullanın
-4. İstatistikler ve logları canlı olarak takip edin
-5. Botu durdurmak için **"Durdur"** butonuna tıklayın
+### Dashboard
 
-## 🎯 Özellikler
+1. Tarayıcınızda `http://localhost:3000` adresine gidin
+2. **Start Bot** butonuna tıklayarak botu başlatın
+3. Yayıncı eklemek için kullanıcı adını girin ve **Add** butonuna tıklayın
+4. İstatistiklerinizi gerçek zamanlı olarak takip edin
+5. İhtiyaç halinde **Stop Bot** ile botu durdurun
 
-### Dashboard Bölümleri
+### Özelleştirme
 
-#### Bot Kontrolü
-- Botu başlatma/durdurma
-- Anlık durum göstergesi
+#### Emoji Listesi
+`.env` dosyasında `EMOJIS` değişkenini düzenleyerek gönderilecek emojileri değiştirebilirsiniz:
 
-#### İstatistikler
-- Toplam gönderilen emoji sayısı
-- Aktif yayıncı sayısı
+```env
+EMOJIS=❤️,😂,👍,🔥,💯,😍,🎉,👏
+```
 
-#### Yayıncı Yönetimi
-- Yeni yayıncı ekleme
-- Mevcut yayıncıları görüntüleme
-- Yayıncıları kaldırma
-- Yayıncı başına istatistikler
+#### Zaman Aralıkları
+Emoji gönderme aralıklarını milisaniye cinsinden ayarlayın:
 
-#### Canlı Loglar
-- Tüm bot aktivitelerini görüntüleme
-- Renkli log seviyeleri (bilgi, uyarı, hata, başarı)
-- Zaman damgalı kayıtlar
+```env
+MIN_INTERVAL=60000   # 1 dakika
+MAX_INTERVAL=300000  # 5 dakika
+```
 
-## ⚙️ Yapılandırma Seçenekleri
-
-| Parametre | Açıklama | Varsayılan |
-|-----------|----------|-----------|
-| `KICK_USERNAME` | Kick kullanıcı adınız | - |
-| `KICK_PASSWORD` | Kick şifreniz | - |
-| `STREAMERS` | Takip edilecek yayıncılar (virgülle ayırın) | - |
-| `EMOJIS` | Gönderilecek emojiler | ❤️,😂,👍,🔥,💯 |
-| `MIN_INTERVAL` | Minimum gönderim aralığı (ms) | 60000 (1 dk) |
-| `MAX_INTERVAL` | Maximum gönderim aralığı (ms) | 300000 (5 dk) |
-| `RECONNECT_DELAY` | Yeniden bağlanma gecikmesi (ms) | 5000 |
-| `MAX_RETRIES` | Maximum deneme sayısı | 5 |
-
-## 🛠️ Teknolojiler
-
-- **Next.js 14**: React framework
-- **Tailwind CSS**: Styling
-- **Axios**: HTTP client
-- **Pusher.js**: WebSocket desteği
-- **Node.js**: Backend runtime
-
-## 📁 Proje Yapısı
+## 🏗️ Proje Yapısı
 
 ```
 kick-point-bot/
-├── app/
-│   ├── api/
-│   │   └── bot/          # API routes
-│   ├── globals.css       # Global styles
-│   ├── layout.js         # Root layout
-│   └── page.js           # Dashboard page
-├── lib/
-│   ├── kickBot.js        # Bot logic
-│   └── botInstance.js    # Bot singleton
+├── src/
+│   ├── app/              # Next.js app router
+│   │   ├── api/          # API endpoints
+│   │   │   └── bot/      # Bot control API
+│   │   ├── page.js       # Dashboard UI
+│   │   └── layout.js     # Layout component
+│   ├── lib/              # Core logic
+│   │   ├── kickClient.js # Kick API client
+│   │   ├── botManager.js # Bot service manager
+│   │   └── botInstance.js # Bot singleton
+│   └── components/       # React components
 ├── config.js             # Configuration
-├── .env.example          # Example environment variables
-└── README.md
+├── .env                  # Environment variables
+└── package.json
 ```
 
-## ⚠️ Önemli Notlar
+## 🔧 API Endpoints
 
-- Bu bot eğitim amaçlıdır
-- Kick'in kullanım şartlarına uygun kullanın
-- Hesabınızın güvenliği için şifrenizi kimseyle paylaşmayın
-- .env dosyasını asla paylaşmayın veya commit etmeyin
+### Bot Kontrolü
+
+- `POST /api/bot/start` - Botu başlat
+- `POST /api/bot/stop` - Botu durdur
+- `GET /api/bot/status` - Bot durumunu al
+
+### Yayıncı Yönetimi
+
+- `POST /api/bot/streamer/add` - Yayıncı ekle
+  ```json
+  { "streamer": "username" }
+  ```
+- `POST /api/bot/streamer/remove` - Yayıncı çıkar
+  ```json
+  { "streamer": "username" }
+  ```
+
+## 🛡️ Güvenlik
+
+- `.env` dosyanızı asla paylaşmayın
+- Kick hesap bilgilerinizi güvende tutun
+- Bot'u sorumlu bir şekilde kullanın
+- Kick'in kullanım şartlarına uyun
+
+## 📝 Notlar
+
+- Bot çalışırken internet bağlantınız aktif olmalıdır
+- Emoji gönderme aralıkları rastgele belirlenir (MIN_INTERVAL - MAX_INTERVAL arası)
+- Her yayıncı için ayrı bağlantı ve zamanlayıcı kullanılır
+- Hata durumlarında bot otomatik olarak yeniden bağlanmayı dener
 
 ## 🤝 Katkıda Bulunma
 
 Katkılarınızı bekliyoruz! Pull request göndermekten çekinmeyin.
 
-## 📝 Lisans
+## 📄 Lisans
 
 MIT
 
-## 💡 İpuçları
+## ⚠️ Sorumluluk Reddi
 
-- Emoji gönderim aralıklarını çok düşük tutmayın (spam olarak algılanabilir)
-- Birden fazla hesap kullanıyorsanız, her hesap için ayrı instance çalıştırın
-- Logları düzenli olarak kontrol ederek hataları takip edin
-- İnternet bağlantınızın stabil olduğundan emin olun
-
-## 🐛 Sorun Giderme
-
-### Bot başlamıyor
-- Kick kullanıcı adı ve şifrenizin doğru olduğundan emin olun
-- .env dosyasının doğru konumda olduğunu kontrol edin
-
-### Emoji gönderilmiyor
-- Yayıncı adlarının doğru yazıldığından emin olun
-- İnternet bağlantınızı kontrol edin
-- Logları kontrol ederek hata mesajlarını inceleyin
-
-### Dashboard açılmıyor
-- 3000 portunun kullanılabilir olduğundan emin olun
-- `npm install` komutunu tekrar çalıştırın
-
-## 📞 Destek
-
-Sorularınız için issue açabilirsiniz.
+Bu bot eğitim amaçlıdır. Kick.com'un kullanım şartlarına uygun kullanımdan kullanıcı sorumludur.
