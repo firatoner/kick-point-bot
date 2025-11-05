@@ -1,19 +1,29 @@
 {
   "name": "kick-point-bot",
   "version": "1.0.0",
-  "description": "Kick streamer emoji bot for earning loyalty points",
+  "description": "Kick streamer emoji bot for earning loyalty points with web dashboard",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node index.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "keywords": ["kick", "bot", "emoji", "loyalty", "points"],
+  "keywords": ["kick", "bot", "emoji", "loyalty", "points", "dashboard"],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.0",
     "dotenv": "^16.3.1",
     "ws": "^8.14.2",
-    "pusher-js": "^8.4.0-rc2"
+    "pusher-js": "^8.4.0-rc2",
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5"
   }
 }
