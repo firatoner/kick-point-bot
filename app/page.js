@@ -8,6 +8,8 @@ export default function Dashboard() {
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newStreamer, setNewStreamer] = useState('');
+  const [showOtpModal, setShowOtpModal] = useState(false);
+  const [otpCode, setOtpCode] = useState('');
 
   const fetchStats = async () => {
     try {
@@ -41,19 +43,43 @@ export default function Dashboard() {
     return () => clearInterval(interval);
   }, []);
 
-  const startBot = async () => {
+  const startBot = async (otp = null) => {
     setLoading(true);
     try {
+      const body = otp ? { otpCode: otp } : {};
       const response = await fetch('/api/bot/start', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
       });
       const data = await response.json();
-      alert(data.message);
+      
+      if (data.otpRequired) {
+        setShowOtpModal(true);
+        setLoading(false);
+        return;
+      }
+
+      if (data.success) {
+        alert(data.message);
+        setShowOtpModal(false);
+        setOtpCode('');
+      } else {
+        alert(data.message);
+      }
       await fetchStats();
     } catch (error) {
       alert('Failed to start bot: ' + error.message);
     }
     setLoading(false);
+  };
+
+  const submitOtp = async () => {
+    if (!otpCode.trim()) {
+      alert('Lütfen OTP kodunu girin');
+      return;
+    }
+    await startBot(otpCode);
   };
 
   const stopBot = async () => {
@@ -131,6 +157,46 @@ export default function Dashboard() {
           <p className={styles.subtitle}>Otomatik emoji gönderme sistemi</p>
         </header>
 
+        {/* OTP Modal */}
+        {showOtpModal && (
+          <div className={styles.modal}>
+            <div className={styles.modalContent}>
+              <h2 className={styles.modalTitle}>🔐 2FA Kod Gerekli</h2>
+              <p className={styles.modalText}>Kick hesabınıza giriş yapmak için 2FA kodunu girin:</p>
+              <input
+                type="text"
+                value={otpCode}
+                onChange={(e) => setOtpCode(e.target.value)}
+                placeholder="6 haneli kod"
+                className={`input ${styles.otpInput}`}
+                maxLength="6"
+                onKeyPress={(e) => e.key === 'Enter' && submitOtp()}
+                autoFocus
+              />
+              <div className={styles.modalButtons}>
+                <button
+                  onClick={submitOtp}
+                  disabled={loading || !otpCode.trim()}
+                  className="btn btn-primary"
+                >
+                  ✓ Onayla
+                </button>
+                <button
+                  onClick={() => {
+                    setShowOtpModal(false);
+                    setOtpCode('');
+                    setLoading(false);
+                  }}
+                  disabled={loading}
+                  className="btn btn-danger"
+                >
+                  ✕ İptal
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Control Panel */}
         <div className={styles.grid}>
           {/* Bot Control */}
@@ -138,7 +204,7 @@ export default function Dashboard() {
             <h2 className={styles.sectionTitle}>Bot Kontrolü</h2>
             <div className={styles.flexRow}>
               <button
-                onClick={startBot}
+                onClick={() => startBot()}
                 disabled={loading || (stats && stats.isRunning)}
                 className={`btn btn-primary ${styles.flex1}`}
               >

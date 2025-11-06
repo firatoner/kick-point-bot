@@ -3,18 +3,27 @@ const { NextResponse } = require('next/server');
 
 export async function POST(request) {
   try {
-    const bot = getBotInstance();
-    const success = await bot.start();
+    const body = await request.json().catch(() => ({}));
+    const otpCode = body.otpCode || null;
 
-    if (success) {
+    const bot = getBotInstance();
+    const result = await bot.start(otpCode);
+
+    if (result.success) {
       return NextResponse.json({
         success: true,
-        message: 'Bot started successfully'
+        message: result.message
       });
+    } else if (result.otpRequired) {
+      return NextResponse.json({
+        success: false,
+        otpRequired: true,
+        message: result.message
+      }, { status: 200 });
     } else {
       return NextResponse.json({
         success: false,
-        message: 'Failed to start bot'
+        message: result.message
       }, { status: 400 });
     }
   } catch (error) {

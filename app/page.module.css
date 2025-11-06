@@ -201,3 +201,60 @@
 .mb8 {
   margin-bottom: 32px;
 }
+
+/* OTP Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modalContent {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.modalTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-align: center;
+  color: #e4e4e7;
+}
+
+.modalText {
+  font-size: 16px;
+  color: #9ca3af;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.otpInput {
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 8px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.modalButtons {
+  display: flex;
+  gap: 12px;
+}
+
+.modalButtons button {
+  flex: 1;
+}
