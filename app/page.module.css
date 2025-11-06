@@ -1,0 +1,203 @@
+.container {
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.maxWidth {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #9ca3af;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.gridThree {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .gridThree {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gridThree {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sectionTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.flexRow {
+  display: flex;
+  gap: 16px;
+}
+
+.flex1 {
+  flex: 1;
+}
+
+.statusBox {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(55, 65, 81, 0.6);
+  border-radius: 8px;
+}
+
+.statusText {
+  font-size: 14px;
+}
+
+.statusGreen {
+  color: #10b981;
+}
+
+.statusRed {
+  color: #ef4444;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statText {
+  font-size: 18px;
+}
+
+.statGreen {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.statBlue {
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+.streamerCard {
+  background: rgba(55, 65, 81, 0.6);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.streamerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.streamerName {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.removeBtn:hover:not(:disabled) {
+  color: #dc2626;
+}
+
+.removeBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.streamerInfo {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.streamerStats {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.streamerStatText {
+  font-size: 14px;
+}
+
+.emptyState {
+  color: #9ca3af;
+}
+
+.logsContainer {
+  background: rgba(55, 65, 81, 0.6);
+  border-radius: 8px;
+  padding: 16px;
+  height: 384px;
+  overflow-y: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+.logEntry {
+  margin-bottom: 4px;
+}
+
+.logTime {
+  color: #6b7280;
+}
+
+.logSuccess {
+  color: #10b981;
+}
+
+.logError {
+  color: #ef4444;
+}
+
+.logWarning {
+  color: #fbbf24;
+}
+
+.logInfo {
+  color: #9ca3af;
+}
+
+.mb8 {
+  margin-bottom: 32px;
+}
